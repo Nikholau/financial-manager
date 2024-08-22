@@ -8,52 +8,50 @@ from user import User
 from report import Report
 
 def main():
-    # Coletar dados do usuário
-    name = input("Enter your name: ")
-    age = int(input("Enter your age: "))
+    nome = input("Digite seu nome: ")
+    idade = int(input("Digite sua idade: "))
 
-    # Criar instância de User
-    user = User(name=name, age=age)
+    usuario = User(name=nome, age=idade)
 
-    # Coletar rendas
-    salary = float(input("Enter your salary: "))
-    user.add_income(Income(type="Salary", amount=salary, date=datetime.now()))
+    salario = float(input("Digite o valor do seu salário: "))
+    usuario.add_income(Income(type="Salário", amount=salario, date=datetime.now()))
 
-    # Coletar despesas
-    rent = float(input("Enter your rent expense: "))
-    user.add_expense(Expense(type="Rent", amount=rent, date=datetime.now()))
+    aluguel = float(input("Digite o valor do seu gasto com aluguel: "))
+    usuario.add_expense(Expense(type="Aluguel", amount=aluguel, date=datetime.now()))
 
     # Definir perfil do investidor
-    profile_type = input("Enter your investor profile (Conservative, Moderate, Aggressive): ")
-    profile_description = input("Enter a description for your investor profile: ")
-    profile = InvestorProfile(profile_type=profile_type, description=profile_description)
-    user.set_profile(profile)
+    tipo_perfil = input("Digite o seu perfil de investidor (Conservador, Moderado, Agressivo): ")
+    descricao_perfil = input("Digite uma descrição para o seu perfil de investidor: ")
+    perfil = InvestorProfile(profile_type=tipo_perfil, description=descricao_perfil)
+    usuario.set_profile(perfil)
 
     # Definir objetivos
-    objective_type = input("Enter your financial objective: ")
-    objective_description = input("Enter a description for your objective: ")
-    objective = Objective(objective_type=objective_type, description=objective_description)
-    user.add_objective(objective)
+    tipo_objetivo = input("Digite o seu objetivo financeiro: ")
+    descricao_objetivo = input("Digite uma descrição para o seu objetivo: ")
+    objetivo = Objective(objective_type=tipo_objetivo, description=descricao_objetivo)
+    usuario.add_objective(objetivo)
 
-    # Exemplo de adição de meta ao objetivo
-    retirement_age = int(input("Enter your target retirement age: "))
-    passive_income_goal = float(input("Enter your passive income goal: "))
-    monthly_contributions = float(input("Enter your monthly contribution: "))
-    annual_contribution_increase = float(input("Enter your annual contribution increase (in %): "))
-    max_contribution_expectation = float(input("Enter your maximum contribution expectation: "))
+    # Adição de meta ao objetivo
+    idade_aposentadoria = int(input("Digite a idade em que deseja se aposentar: "))
+    meta_renda_passiva = float(input("Digite o valor da sua meta de renda passiva: "))
+    contribuicoes_mensais = float(input("Digite o valor das suas contribuições mensais: "))
+    aumento_anual_contribuicao = float(input("Digite o percentual de aumento anual das contribuições (em %): "))
+    expectativa_maxima_contribuicao = float(input("Digite o valor máximo da sua expectativa de contribuição: "))
 
-    goal = Goal(
-        retirement_age=retirement_age,
-        passive_income_goal=passive_income_goal,
-        monthly_contributions=monthly_contributions,
-        annual_contribution_increase=annual_contribution_increase,
-        max_contribution_expectation=max_contribution_expectation
+    meta = Goal(
+        retirement_age=idade_aposentadoria,
+        passive_income_goal=meta_renda_passiva,
+        monthly_contributions=contribuicoes_mensais,
+        annual_contribution_increase=aumento_anual_contribuicao,
+        max_contribution_expectation=expectativa_maxima_contribuicao
     )
-    objective.add_goal(goal)
+    objetivo.add_goal(meta)
 
-    # Gerar relatório
-    report = user.generate_report()
-    print(report.generate())
+    # Gerar relatório em PDF
+    relatorio = Report(user=usuario)
+    relatorio.generate_pdf("relatorio_usuario.pdf")
+
+    print("Relatório gerado com sucesso! O arquivo PDF foi salvo como 'relatorio_usuario.pdf'.")
 
 if __name__ == "__main__":
     main()
