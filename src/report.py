@@ -11,6 +11,16 @@ class Report:
     def __init__(self, user: User):
         self._user = user
         self._generation_date = datetime.now()
+        self._goal_data = {}
+
+    def add_goal_data(self, total_accumulated: float, total_interest: float, 
+                      total_invested: float, passive_income_generated: float) -> None:
+        self._goal_data = {
+            "total_accumulated": total_accumulated,
+            "total_interest": total_interest,
+            "total_invested": total_invested,
+            "passive_income_generated": passive_income_generated
+        }
 
     def generate_pdf(self, file_name: str) -> None:
         c = canvas.Canvas(file_name, pagesize=letter)
@@ -53,18 +63,32 @@ class Report:
                 c.drawString(140, y, f"Meta de Renda Passiva: R$ {goal.passive_income_goal}")
                 y -= 20
 
+        # Adicione os dados da meta financeira
+        if self._goal_data:
+            c.drawString(100, y, "Dados da Meta Financeira:")
+            y -= 20
+            c.drawString(120, y, f"Total Acumulado: R$ {self._goal_data['total_accumulated']:.2f}")
+            y -= 20
+            c.drawString(120, y, f"Total de Juros: R$ {self._goal_data['total_interest']:.2f}")
+            y -= 20
+            c.drawString(120, y, f"Total Investido: R$ {self._goal_data['total_invested']:.2f}")
+            y -= 20
+            c.drawString(120, y, f"Renda Passiva Gerada: R$ {self._goal_data['passive_income_generated']:.2f}")
+            y -= 20
+
         c.save()
 
-        @app.route('/download_report')
-        def download_report():
-            file_name = "relatorio_usuario.pdf"
-            # Gere o PDF com os dados do usuário
-            user = User(name="Fulano", age=30)  # Exemplo de usuário, você deve substituir por dados reais
-            report = Report(user)
-            report.generate_pdf(file_name)
+# Exemplo de endpoint para download do relatório
+@app.route('/download_report')
+def download_report():
+    file_name = "relatorio_usuario.pdf"
+    # Gere o PDF com os dados do usuário
+    user = User(name="Fulano", age=30)  # Exemplo de usuário, você deve substituir por dados reais
+    report = Report(user)
+    report.generate_pdf(file_name)
 
-            # Permitir o download do PDF
-            return send_file(file_name, as_attachment=True)
+    # Permitir o download do PDF
+    return send_file(file_name, as_attachment=True)
 
-        if __name__ == "__main__":
-            app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
