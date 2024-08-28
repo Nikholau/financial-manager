@@ -1,0 +1,37 @@
+{
+    "name": "Nikholas",
+    "age": 20,
+    "income": [
+        {
+            "type": "Sal\u00e1rio",
+            "amount": 1500.0,
+            "date": "2024-08-25"
+        }
+    ],
+    "expenses": [
+        {
+            "type": "Aluguel",
+            "amount": 500.0,
+            "date": "2024-08-25"
+        }
+    ],
+    "profile": {
+        "profile_type": "Moderado",
+        "description": "teste"
+    },
+    "objectives": [
+        {
+            "objective_type": "carro",
+            "description": "vermelho",
+            "goals": [
+                {
+                    "retirement_age": 55,
+                    "passive_income_goal": 1500.0,
+                    "total_accumulated": 100000.0,
+                    "total_interest": 20000.0,
+                    "total_invested": 80000.0
+                }
+            ]
+        }
+    ]
+}
