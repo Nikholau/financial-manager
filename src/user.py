@@ -42,7 +42,6 @@ class User:
             "expenses": [{"type": exp.type, "amount": exp.amount, "date": exp.date.strftime('%Y-%m-%d')} for exp in self._expenses],
             "profile": {
                 "profile_type": self._profile.profile_type,
-                "description": self._profile.description
             } if self._profile else None,
             "objectives": [{
                 "objective_type": obj.objective_type,
@@ -71,7 +70,7 @@ class User:
         user._expenses = [Expense(type=exp["type"], amount=exp["amount"], date=datetime.strptime(exp["date"], '%Y-%m-%d')) for exp in data["expenses"]]
         
         if data["profile"]:
-            user._profile = Profile(profile_type=data["profile"]["profile_type"], description=data["profile"]["description"])
+            user._profile = Profile(profile_type=data["profile"]["profile_type"])
         
         user._objectives = []
         for obj in data["objectives"]:

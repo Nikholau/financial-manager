@@ -1,5 +1,9 @@
+from datetime import datetime
 from transaction import Transaction
 
 class Income(Transaction):
+    def __init__(self, type: str, amount: float, date: datetime):
+        super().__init__(type, amount, date)
+
     def calculate_total_annual(self) -> float:
-        pass
+        return self.amount * 12 

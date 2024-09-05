@@ -69,8 +69,6 @@ class Report:
         if self._user._profile:
             c.drawString(120, y, f"Tipo: {self._user._profile.profile_type}")
             y -= 20
-            c.drawString(120, y, f"Descrição: {self._user._profile.description}")
-            y -= 20
 
         c.drawString(100, y, "Objetivos:")
         y -= 20

@@ -24,8 +24,7 @@ def main():
         adicionar_rendas_despesas(usuario)
 
         tipo_perfil = input("Digite o seu perfil de investidor (Conservador, Moderado, Agressivo): ")
-        descricao_perfil = input("Digite uma descrição para o seu perfil de investidor: ")
-        perfil = InvestorProfile(profile_type=tipo_perfil, description=descricao_perfil)
+        perfil = InvestorProfile(profile_type=tipo_perfil)
         usuario.set_profile(perfil)
 
         tipo_objetivo = input("Digite o seu objetivo financeiro: ")
