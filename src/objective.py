@@ -10,13 +10,20 @@ class Objective:
     def objective_type(self):
         return self._objective_type
 
+    @objective_type.setter
+    def objective_type(self, value: str):
+        self._objective_type = value
+
     @property
     def description(self):
         return self._description
+
+    @description.setter
+    def description(self, value: str):
+        self._description = value
 
     def add_goal(self, goal: Goal) -> None:
         self._goals.append(goal)
 
     def calculate_total_annual(self) -> float:
-        # Implementation for calculating the annual total of goals
         pass

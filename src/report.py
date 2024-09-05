@@ -13,6 +13,30 @@ class Report:
         self._generation_date = datetime.now()
         self._goal_data = {}
 
+    @property
+    def user(self):
+        return self._user
+
+    @user.setter
+    def user(self, value: User):
+        self._user = value
+
+    @property
+    def generation_date(self):
+        return self._generation_date
+
+    @generation_date.setter
+    def generation_date(self, value: datetime):
+        self._generation_date = value
+
+    @property
+    def goal_data(self):
+        return self._goal_data
+
+    @goal_data.setter
+    def goal_data(self, value: dict):
+        self._goal_data = value
+
     def add_goal_data(self, total_accumulated: float, total_interest: float, 
                       total_invested: float, passive_income_generated: float) -> None:
         self._goal_data = {
@@ -28,21 +52,18 @@ class Report:
         c.drawString(100, 730, f"Idade: {self._user.age}")
         c.drawString(100, 710, f"Data de geração: {self._generation_date.strftime('%d/%m/%Y %H:%M:%S')}")
 
-        # Adicione informações de renda
         c.drawString(100, 690, "Renda:")
         y = 670
         for income in self._user._income:
             c.drawString(120, y, f"Tipo: {income.type}, Valor: R$ {income.amount}, Data: {income.date.strftime('%d/%m/%Y')}")
             y -= 20
 
-        # Adicione informações de despesas
         c.drawString(100, y, "Despesas:")
         y -= 20
         for expense in self._user._expenses:
             c.drawString(120, y, f"Tipo: {expense.type}, Valor: R$ {expense.amount}, Data: {expense.date.strftime('%d/%m/%Y')}")
             y -= 20
 
-        # Adicione perfil de investidor
         c.drawString(100, y, "Perfil de Investidor:")
         y -= 20
         if self._user._profile:
@@ -51,7 +72,6 @@ class Report:
             c.drawString(120, y, f"Descrição: {self._user._profile.description}")
             y -= 20
 
-        # Adicione objetivos e metas
         c.drawString(100, y, "Objetivos:")
         y -= 20
         for objective in self._user._objectives:
@@ -63,7 +83,6 @@ class Report:
                 c.drawString(140, y, f"Meta de Renda Passiva: R$ {goal.passive_income_goal}")
                 y -= 20
 
-        # Adicione os dados da meta financeira
         if self._goal_data:
             c.drawString(100, y, "Dados da Meta Financeira:")
             y -= 20
@@ -78,17 +97,6 @@ class Report:
 
         c.save()
 
-# Exemplo de endpoint para download do relatório
-@app.route('/download_report')
-def download_report():
-    file_name = "relatorio_usuario.pdf"
-    # Gere o PDF com os dados do usuário
-    user = User(name="Fulano", age=30)  # Exemplo de usuário, você deve substituir por dados reais
-    report = Report(user)
-    report.generate_pdf(file_name)
-
-    # Permitir o download do PDF
-    return send_file(file_name, as_attachment=True)
 
 if __name__ == "__main__":
     app.run(debug=True)

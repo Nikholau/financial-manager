@@ -50,15 +50,17 @@ def main():
 
         resultado_meta = meta.calculate_investment_period(current_age=usuario.age)
 
+
         objetivo.add_goal(meta)
 
         relatorio = Report(user=usuario)
         relatorio.add_goal_data(
-            total_accumulated=resultado_meta["total_accumulated"],
-            total_interest=resultado_meta["total_interest"],
-            total_invested=resultado_meta["total_invested"],
-            passive_income_generated=resultado_meta["passive_income_generated"]
+            total_accumulated=meta.total_accumulated,
+            total_interest=meta.total_interest,
+            total_invested=meta.total_invested,
+            passive_income_generated=meta.passive_income_generated
         )
+
         relatorio.generate_pdf("relatorio_usuario.pdf")
 
         usuario.save_to_file(file_name)

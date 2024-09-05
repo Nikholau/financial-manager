@@ -1,35 +1,35 @@
 {
-    "name": "nikholas",
+    "name": "ni",
     "age": 21,
     "income": [
         {
             "type": "Sal\u00e1rio",
             "amount": 1000.0,
-            "date": "2024-09-04"
+            "date": "2024-09-05"
         }
     ],
     "expenses": [
         {
             "type": "Aluguel",
             "amount": 500.0,
-            "date": "2024-09-04"
+            "date": "2024-09-05"
         }
     ],
     "profile": {
-        "profile_type": "Conservador",
-        "description": "Calmo"
+        "profile_type": "Agressivo",
+        "description": "teste"
     },
     "objectives": [
         {
-            "objective_type": "carro",
-            "description": "azul",
+            "objective_type": "",
+            "description": "carro",
             "goals": [
                 {
                     "retirement_age": 50,
-                    "passive_income_goal": 2000.0,
-                    "total_accumulated": 100000.0,
-                    "total_interest": 20000.0,
-                    "total_invested": 80000.0
+                    "passive_income_goal": 1500.0,
+                    "total_accumulated": 170520.0,
+                    "total_interest": 100920.0,
+                    "total_invested": 69600.0
                 }
             ]
         }
